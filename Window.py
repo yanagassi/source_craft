@@ -80,8 +80,8 @@ class Window(pyglet.window.Window):
         """
         stars = []
         for _ in range(num_stars):
-            x = random.uniform(-1.0, 1.0) * 800  # Gerar coordenadas aleatórias no eixo X
-            y = random.uniform(-1.0, 1.0) * 600  # Gerar coordenadas aleatórias no eixo Y
+            x = random.uniform(-1.0, 1.0) * SCREEN_X  # Gerar coordenadas aleatórias no eixo X
+            y = random.uniform(-1.0, 1.0) * SCREEN_Y  # Gerar coordenadas aleatórias no eixo Y
             stars.append((x, y))
         return stars
 
@@ -396,7 +396,7 @@ class Window(pyglet.window.Window):
         """ Configura o OpenGL para desenhar em 3D.
 
         """
-        self.draw_stars()
+        # self.draw_stars()
         width, height = self.get_size()
         glEnable(GL_DEPTH_TEST)
         viewport = self.get_viewport_size()

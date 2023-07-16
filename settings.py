@@ -8,7 +8,7 @@ SECTOR_SIZE = 16
 WALKING_SPEED = 5
 FLYING_SPEED = 15
 
-GRAVITY = 3.3333  # Terra = 20.0
+GRAVITY = 10.0  # Terra = 20.0
 MAX_JUMP_HEIGHT = 4.0 # About the height of a block.
 # To derive the formula for calculating jump speed, first solve
 #    v_t = v_0 + a * t
@@ -21,4 +21,10 @@ JUMP_SPEED = math.sqrt(2 * GRAVITY * MAX_JUMP_HEIGHT)
 TERMINAL_VELOCITY = 50
 
 PLAYER_HEIGHT = 2
-NUM_STARS=200
+NUM_STARS = 4000
+
+CHUNK_LENGHT = 64 # 1/2
+
+
+SCREEN_X = 1200
+SCREEN_Y = 800

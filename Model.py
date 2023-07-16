@@ -44,23 +44,25 @@ class Model:
         """ Inicializa o mundo colocando todos os blocos.
 
         """
-        n = 80  # 1/2 largura e altura do mundo
+        n = CHUNK_LENGHT  # 1/2 largura e altura do mundo TAMANHO DA CUNK 
         s = 1  # tamanho do passo
         y = 0  # altura y inicial
         for x in xrange(-n, n + 1, s):
-            for z in xrange(-n, n + 1, s):
-                # criar uma camada de pedra e grama em todos os lugares.
+            for z in xrange(-n, n + 1, s): 
                 self.add_block((x, y - 2, z), GRASS, immediate=False)
-                for nzs in range(8):
-                    if(nzs > 2):
+                
+                for nzs in range(CHUNK_LENGHT):
+                    if(nzs > 1):
                         self.add_block((x, y - nzs, z), GRASS, immediate=False)
 
-                self.add_block((x, y - 9, z), GRASS, immediate=False)#bedrock
+                self.add_block((x, y - CHUNK_LENGHT, z), STONE, immediate=False) #bedrock
+                self.add_block((x, y + CHUNK_LENGHT, z), STONE, immediate=False) #bedrock
 
                 if x in (-n, n) or z in (-n, n):
                     # criar paredes externas.
-                    for dy in xrange(-2, 3):
+                    for dy in xrange(-CHUNK_LENGHT, CHUNK_LENGHT):
                         self.add_block((x, y + dy, z), STONE, immediate=False)
+                        
 
         # gerar as colinas aleatoriamente
         o = n - 10
@@ -141,6 +143,8 @@ class Model:
             if self.exposed(position):
                 self.show_block(position)
             self.check_neighbors(position)
+            
+        
 
     def remove_block(self, position, immediate=True):
         """ Remove o bloco na posição dada.
@@ -157,7 +161,7 @@ class Model:
         self.sectors[sectorize(position)].remove(position)
         if immediate:
             if position in self.shown:
-                self.hide_block(position)
+                self.hide_block(position) 
             self.check_neighbors(position)
 
     def check_neighbors(self, position):
